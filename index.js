@@ -1,6 +1,10 @@
+require('dotenv').config();
+
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(express.json());
 
@@ -45,7 +49,15 @@ app.post('/secret', (req, res) => {
     });
 });
 
-app.listen(
-    PORT,
-    () => console.log(`Running on http://localhost:${PORT}`)
-);
+mongoose.connect(
+    MONGODB_URI
+).then(() => {
+    console.log('Connected to database');
+
+    app.listen(
+        PORT,
+        () => console.log(`Running on http://localhost:${PORT}`)
+    );
+}).catch((err) => {
+    console.log('Failed to connect to the database:', err);
+});
