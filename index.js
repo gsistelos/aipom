@@ -84,7 +84,7 @@ app.post('/api/user/create', async (req, res) => {
 
 app.post('/api/user/delete', async (req, res) => {
     try {
-        const info = await User.deleteMany({ email: req.body.email, password: req.body.password });
+        const info = await User.deleteOne({ email: req.body.email, password: req.body.password });
 
         if (info.deletedCount === 0) {
             return res.status(404).send({
