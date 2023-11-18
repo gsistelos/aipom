@@ -71,6 +71,27 @@ app.post('/api/users', async (req, res) => {
     }
 });
 
+app.patch('/api/users/:id', async (req, res) => {
+    try {
+        const info = await User.updateOne(
+            { _id: req.params.id },
+            { $set: req.body }
+        );
+
+        if (info.modifiedCount === 0) {
+            return res.status(304).end();
+        }
+
+        res.status(200).send({
+            message: 'User updated'
+        });
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
+});
+
 app.delete('/api/users/:id', async (req, res) => {
     try {
         const info = await User.deleteOne({ _id: req.params.id });
