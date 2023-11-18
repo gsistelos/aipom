@@ -3,7 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 const app = express();
+
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
 const CLIENT_URI = process.env.CLIENT_URI;
@@ -42,15 +44,15 @@ app.get("/api/users", async (req, res) => {
 
 app.get("/api/users/:id", async (req, res) => {
   try {
-    const users = await User.findOne({ _id: req.params.id });
+    const user = await User.findOne({ _id: req.params.id });
 
-    if (users.length === 0) {
+    if (!user) {
       return res.status(404).send({
-        message: "No users found",
+        message: "User not found",
       });
     }
 
-    res.status(200).send(users);
+    res.status(200).send(user);
   } catch (err) {
     res.status(500).send({
       message: err.message,
@@ -128,7 +130,7 @@ mongoose
   .then(() => {
     console.log("Connected to database");
 
-    app.listen(PORT, () => console.log(`Running on http://localhost:${PORT}`));
+    app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   })
   .catch((err) => {
     console.log("Failed to connect to the database:", err);
