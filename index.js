@@ -95,6 +95,11 @@ app.patch("/api/users/:id", async (req, res) => {
       return res.status(304).end();
     }
 
+    await User.updateOne(
+      { _id: req.params.id },
+      { $currentDate: { updatedAt: true } }
+    );
+
     res.status(200).send({
       message: "User updated",
     });
