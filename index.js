@@ -2,14 +2,17 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
+const CLIENT_URI = process.env.CLIENT_URI;
 const TOKEN = process.env.TOKEN;
 
 const User = require('./User');
 
 app.use(express.json());
+app.use(cors({ origin: CLIENT_URI }));
 app.use((req, res, next) => {
     if (req.headers.authorization !== TOKEN) {
         return res.status(401).send({
