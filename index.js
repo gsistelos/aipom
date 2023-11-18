@@ -10,15 +10,10 @@ const User = require('./User');
 
 app.use(express.json());
 
-app.get('/api/user', async (req, res) => {
+app.get('/api/users', async (req, res) => {
     try {
-        if (!req.query.username) {
-            return res.status(400).send({
-                message: 'No username provided'
-            });
-        }
-
-        const users = await User.find({ username: req.query.username });
+        const users = req.query ?
+            await User.find(req.query) : await User.find();
 
         if (users.length === 0) {
             return res.status(404).send({
@@ -34,9 +29,9 @@ app.get('/api/user', async (req, res) => {
     }
 });
 
-app.get('/api/user/all', async (req, res) => {
+app.get('/api/users/:id', async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find({ _id: req.params.id });
 
         if (users.length === 0) {
             return res.status(404).send({
@@ -52,14 +47,8 @@ app.get('/api/user/all', async (req, res) => {
     }
 });
 
-app.post('/api/user/create', async (req, res) => {
+app.post('/api/users', async (req, res) => {
     try {
-        if (await User.findOne({ email: req.body.email })) {
-            return res.status(400).send({
-                message: 'User email already in use'
-            });
-        }
-
         const user = new User(req.body);
 
         const err = user.validateSync();
@@ -82,9 +71,9 @@ app.post('/api/user/create', async (req, res) => {
     }
 });
 
-app.post('/api/user/delete', async (req, res) => {
+app.delete('/api/users/:id', async (req, res) => {
     try {
-        const info = await User.deleteOne({ email: req.body.email, password: req.body.password });
+        const info = await User.deleteOne({ _id: req.params.id });
 
         if (info.deletedCount === 0) {
             return res.status(404).send({
