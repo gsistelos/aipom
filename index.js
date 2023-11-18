@@ -31,7 +31,7 @@ app.get('/api/users', async (req, res) => {
 
 app.get('/api/users/:id', async (req, res) => {
     try {
-        const users = await User.find({ _id: req.params.id });
+        const users = await User.findOne({ _id: req.params.id });
 
         if (users.length === 0) {
             return res.status(404).send({
