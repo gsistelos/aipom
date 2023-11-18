@@ -5,10 +5,19 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
+const TOKEN = process.env.TOKEN;
 
 const User = require('./User');
 
 app.use(express.json());
+app.use((req, res, next) => {
+    if (req.headers.authorization !== TOKEN) {
+        return res.status(401).send({
+            message: 'Unauthorized'
+        });
+    }
+    next();
+});
 
 app.get('/api/users', async (req, res) => {
     try {
