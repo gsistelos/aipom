@@ -1,13 +1,13 @@
-# restful-api
+# RESTful-API
 
-A Simple RESTful API in Node.js using Express and Mongoose
+A simple RESTful API in Node.js using Express and Mongoose
 
-## Features
+# Features
 
-- CRUD: Create, Read, Update and Delete data from the database
-- Token Authorization
+- CRUD: create, read, update and delete data from the database
+- Token authorization
 
-## Usage
+# Usage
 
 Create .env with your information (see [.env.example](https://github.com/gsistelos/restful-api/blob/main/.env.example))
 
@@ -17,11 +17,13 @@ See [mongodb](https://github.com/gsistelos/restful-api/tree/main/mongodb) to sta
 
 Run `npm start`
 
-## TL;DR Documentation
+# TL;DR Documentation
 
-You need Authorization header with the token to make any request
+You need "Authorization" header with the API token to make any request
 
-### GET method examples:
+## Methods examples:
+
+### GET:
 
 Returns all users: `GET http://localhost:8080/api/users`
 
@@ -33,11 +35,11 @@ You can use any user field (username, email, password, createdAt, updatedAt, _id
 
 You can also search by id like this: `GET http://localhost:8080/api/users/<id>`
 
-### POST method examples:
+### POST:
 
 Creates a new user: `POST http://localhost:8080/api/users`
 
-The data for the new user is the request body, that should look like this:
+The request body contains information about the new user, it should look like this:
 ```json
 {
   "username": "gsistelos",
@@ -46,11 +48,11 @@ The data for the new user is the request body, that should look like this:
 }
 ```
 
-### PATCH method examples:
+### PATCH:
 
-Updates a user field: `PATCH http://localhost:8080/api/users/<id>`
+Updates a user: `PATCH http://localhost:8080/api/users/<id>`
 
-The data to update the user is the request body, that should look like this:
+The request body contains information about what to update, it should look like this:
 ```json
 {
   "password": "new_password"
@@ -59,6 +61,6 @@ The data to update the user is the request body, that should look like this:
 
 Any field can be updated
 
-### DELETE method examples:
+### DELETE:
 
 Deletes a user: `DELETE http://localhost:8080/api/users/<id>`
