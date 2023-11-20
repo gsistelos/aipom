@@ -45,3 +45,20 @@ The data for the new user is the request body, that should look like this:
   "password": "test123"
 }
 ```
+
+### PATCH method examples:
+
+Updates a user field: `PATCH http://localhost:8080/api/users/<id>`
+
+The data to update the user is the request body, that should look like this:
+```json
+{
+  "password": "new_password"
+}
+```
+
+Any field can be updated
+
+### DELETE method examples:
+
+Deletes a user: `DELETE http://localhost:8080/api/users/<id>`
