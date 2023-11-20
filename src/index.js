@@ -8,13 +8,13 @@ const app = express();
 
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
-const CLIENT_URI = process.env.CLIENT_URI;
+const CLIENT_URL = process.env.CLIENT_URL;
 const TOKEN = process.env.TOKEN;
 
 const User = require("./User");
 
 app.use(express.json());
-app.use(cors({ origin: CLIENT_URI }));
+app.use(cors({ origin: CLIENT_URL }));
 app.use((req, res, next) => {
   if (req.headers.authorization !== TOKEN) {
     return res.status(401).send({

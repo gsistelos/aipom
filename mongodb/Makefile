@@ -1,4 +1,4 @@
-COMPOSE = docker-compose -f srcs/docker-compose.yml
+COMPOSE = docker-compose -f src/docker-compose.yml
 
 all: up
 
@@ -17,4 +17,4 @@ stop:
 volumes:
 	mkdir -p ~/data/db
 
-.PHONY: all up start down stop
+.PHONY: all up start down stop volumes

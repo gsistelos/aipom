@@ -1,14 +1,15 @@
 {
   "name": "restful-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A Simple RESTful API with Node.js, Express and MongoDB",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js"
+		"start": "clear && node src/index.js",
+    "dev": "clear && nodemon src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["restful", "api", "node", "express", "mongodb"],
+  "author": "Gabriel Sistelos",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
