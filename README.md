@@ -1,25 +1,16 @@
-# RESTful-API
+# aipom
 
-A simple RESTful API in Node.js using Express and Mongoose
+A Simple RESTful API with Express and Mongoose
 
 # Features
 
 - CRUD: create, read, update and delete data from the database
-- Token authorization
 
 # Usage
 
 Create .env with your information (see [.env.example](https://github.com/gsistelos/restful-api/blob/main/.env.example))
 
-### MongoDB
-
-See [mongodb](https://github.com/gsistelos/restful-api/tree/main/mongodb) to start a mongodb container and test the API
-
-Run `npm start`
-
 # TL;DR Documentation
-
-You need "Authorization" header with the API token to make any request
 
 ## Methods examples:
 

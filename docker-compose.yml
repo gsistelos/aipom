@@ -1,0 +1,23 @@
+networks:
+  aipom:
+    driver: bridge
+
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    env_file: .env
+    ports:
+      - 27017:27017
+    volumes:
+      - ./database:/data/db
+
+  aipom:
+    container_name: aipom
+    build: .
+    env_file: .env
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
