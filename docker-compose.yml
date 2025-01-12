@@ -2,6 +2,10 @@ networks:
   aipom:
     driver: bridge
 
+volumes:
+  database:
+    name: database
+    driver: local
 
 services:
   mongodb:
@@ -11,7 +15,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./database:/data/db
+      - database:/data/db
 
   aipom:
     container_name: aipom
