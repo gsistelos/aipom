@@ -1,27 +1,25 @@
 networks:
-  aipom:
+  default:
     driver: bridge
 
 volumes:
-  database:
-    name: database
-    driver: local
+  mongo:
 
 services:
-  mongodb:
-    container_name: mongodb
-    image: mongo:latest
-    env_file: .env
-    ports:
-      - 27017:27017
-    volumes:
-      - database:/data/db
-
   aipom:
-    container_name: aipom
     build: .
     env_file: .env
+    networks:
+      - default
     ports:
-      - 8080:8080
+      - 8080
     depends_on:
-      - mongodb
+      - mongo
+
+  mongo:
+    image: mongo
+    env_file: .env
+    networks:
+      - default
+    volumes:
+      - mongo:/data/db
