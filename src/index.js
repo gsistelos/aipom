@@ -14,8 +14,6 @@ app.use(express.json());
 // Routes
 app.use("/api/users", usersRouter);
 
-console.log(PORT, MONGODB_URI);
-
 mongoose
   .connect(MONGODB_URI)
   .then(() => {

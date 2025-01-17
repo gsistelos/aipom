@@ -54,9 +54,7 @@ router.post("/", async (req, res) => {
 
     await user.save();
 
-    res.status(201).send({
-      message: "User created",
-    });
+    res.status(201).send(user);
   } catch (err) {
     return res.status(500).send({
       message: err.message,
