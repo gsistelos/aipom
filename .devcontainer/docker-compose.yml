@@ -1,0 +1,25 @@
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  mongo:
+
+services:
+  aipom:
+    image: mcr.microsoft.com/vscode/devcontainers/javascript-node
+    volumes:
+      - ..:/workspace/aipom:cached
+    networks:
+      - default
+    command: sleep infinity
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo:/data/db
+    networks:
+      - default
+    env_file: ../.env
