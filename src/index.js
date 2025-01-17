@@ -14,12 +14,14 @@ app.use(express.json());
 // Routes
 app.use("/api/users", usersRouter);
 
+console.log(PORT, MONGODB_URI);
+
 mongoose
-	.connect(MONGODB_URI)
-	.then(() => {
-		console.log("Connected to database");
-		app.listen(PORT, () => console.log(`Running on port ${PORT}`));
-	})
-	.catch((err) => {
-		console.log("Failed to connect to the database:", err);
-	});
+  .connect(MONGODB_URI)
+  .then(() => {
+    console.log("Connected to database");
+    app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.log("Failed to connect to the database:", err);
+  });

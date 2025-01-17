@@ -4,7 +4,7 @@
   "description": "A Simple RESTful API with Express and Mongoose",
   "main": "src/index.js",
   "scripts": {
-    "start": "clear && node src/index.js"
+    "start": "clear && node --env-file=.env src/index.js"
   },
   "keywords": [],
   "author": "Gabriel Sistelos",
