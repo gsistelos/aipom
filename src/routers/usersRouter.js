@@ -69,6 +69,12 @@ router.patch("/:id", async (req, res) => {
       { $set: req.body }
     );
 
+    if (info.matchedCount === 0) {
+      return res.status(404).send({
+        message: "User not found",
+      });
+    }
+
     if (info.modifiedCount === 0) {
       return res.status(304).end();
     }
@@ -78,9 +84,9 @@ router.patch("/:id", async (req, res) => {
       { $currentDate: { updatedAt: true } }
     );
 
-    res.status(200).send({
-      message: "User updated",
-    });
+    const user = await User.findById(req.params.id);
+
+    res.status(200).send(user);
   } catch (err) {
     return res.status(500).send({
       message: err.message,
