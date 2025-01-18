@@ -8,11 +8,10 @@ volumes:
 services:
   aipom:
     build: .
-    env_file: .env
     networks:
       - default
     ports:
-      - 8080
+      - 8080:8080
     depends_on:
       - mongo
 
