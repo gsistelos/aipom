@@ -9,7 +9,7 @@ services:
   aipom:
     image: mcr.microsoft.com/vscode/devcontainers/javascript-node
     volumes:
-      - ..:/workspace/aipom:cached
+      - ..:/workspaces/aipom:cached
     networks:
       - default
     command: sleep infinity
