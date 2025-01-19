@@ -1,9 +1,9 @@
 {
-	"name": "aipom",
+  "name": "aipom",
 
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "aipom",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "aipom",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   "customizations": {
     "vscode": {
