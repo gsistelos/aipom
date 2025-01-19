@@ -3,7 +3,7 @@ networks:
     driver: bridge
 
 volumes:
-  mongo:
+  mongo-data:
 
 services:
   aipom:
@@ -13,13 +13,11 @@ services:
     networks:
       - default
     command: sleep infinity
-    depends_on:
-      - mongo
 
   mongo:
     image: mongo
     volumes:
-      - mongo:/data/db
+      - mongo-data:/data/db
     networks:
       - default
     env_file: ../.env
